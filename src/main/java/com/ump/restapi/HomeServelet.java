@@ -24,16 +24,16 @@ public class HomeServelet extends HttpServlet {
        request.getRequestDispatcher("/WEB-INF/Pages/Home.jsp").forward(request, response);
         
     }
-
+        
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // If needed, you can process POST requests here
         doGet(request, response); // Optionally call doGet for POST as well
-    }
+    }               
 
     @Override
-    public String getServletInfo() {
+    public String getServletInfo() {    
         return "HomeServlet that responds with a greeting.";
     }
 }

@@ -1,5 +1,9 @@
+com\ump\restapi\SignUpServlet.class
 com\ump\restapi\HelloResource.class
 com\mycompany\charitydonations\JakartaRestConfiguration.class
+com\ump\restapi\UpcomingServlet.class
+com\ump\restapi\LoginServlet.class
 com\mycompany\charitydonations\resources\JakartaEE10Resource.class
 com\ump\restapi\HomeServelet.class
 com\ump\restapi\DemoApp.class
+com\ump\restapi\ContactServlet.class

@@ -16,12 +16,12 @@
       <nav id="navmenu" class="navmenu">
         <ul>
         
-          <li><a href="index.html#about">About Us</a></li>
-          <li><a href="index.html#services">Our Services</a></li>
-          <li><a href="index.html#portfolio">Success Stories</a></li>
-          <li><a href="index.html#donate">Donate</a></li>
+          <li><a href="<%= request.getContextPath() %>/home#about">About Us</a></li>
+          <li><a href="<%= request.getContextPath() %>/home#services">Our Services</a></li>
+          <li><a href="<%= request.getContextPath() %>/home#portfolio">Success Stories</a></li>
+          <li><a href="<%= request.getContextPath() %>/donate">Donate</a></li>
           
-          <li><a href="blog.html">Blog</a></li>
+          <li><a href="<%= request.getContextPath() %>/blog">Blog</a></li>
           <li class="dropdown"><a href="#"><span>Get Involved</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="#">Volunteer</a></li>
@@ -29,20 +29,20 @@
               <li><a href="#">Partner with Us</a></li>
               <li class="dropdown"><a href="#"><span>Events</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
-                  <li><a href="#">Upcoming Events</a></li>
+                  <li><a href="<%= request.getContextPath() %>/upcoming-events">Upcoming Events</a></li>
                   <li><a href="#">Past Events</a></li>
                   <li><a href="#">Event Gallery</a></li>
                 </ul>
               </li>
             </ul>
           </li>
-          <li><a href="index.html#contact">Contact Us</a></li>
+          <li><a href="<%= request.getContextPath() %>/Contact">Contact Us</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
+      </nav> rekekjrekj
       
 
-      <a class="btn-getstarted" href="index.html#about">Get Started</a>
+      <a class="btn-getstarted" href="<%= request.getContextPath() %>/Signin">Sign in / Sign Up</a>
 
     </div>
   </header>
