@@ -39,7 +39,7 @@
           <li><a href="<%= request.getContextPath() %>/Contact">Contact Us</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav> rekekjrekj
+      </nav>  
       
 
       <a class="btn-getstarted" href="<%= request.getContextPath() %>/Signin">Sign in / Sign Up</a>
