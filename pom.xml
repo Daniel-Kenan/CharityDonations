@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mycompany</groupId>
@@ -6,27 +7,29 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>CharityDonations-1.0-SNAPSHOT</name>
-    
+
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <jakartaee>10.0.0</jakartaee>
     </properties>
-    
+
     <dependencies>
+        <!-- Jakarta EE API -->
         <dependency>
             <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-api</artifactId>
+            <artifactId>jakarta.jakartaee-web-api</artifactId>
             <version>${jakartaee}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
-    
+
     <build>
+        <finalName>rest</finalName>
         <plugins>
+            <!-- Maven Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -34,11 +37,10 @@
                 <configuration>
                     <source>11</source>
                     <target>11</target>
-                    <compilerArguments>
-                        <endorseddirs>${endorsed.dir}</endorseddirs>
-                    </compilerArguments>
                 </configuration>
             </plugin>
+
+            <!-- Maven WAR Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -47,6 +49,8 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+
+            <!-- Maven Dependency Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -58,7 +62,7 @@
                             <goal>copy</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${endorsed.dir}</outputDirectory>
+                            <outputDirectory>${project.build.directory}/endorsed</outputDirectory>
                             <silent>true</silent>
                             <artifactItems>
                                 <artifactItem>

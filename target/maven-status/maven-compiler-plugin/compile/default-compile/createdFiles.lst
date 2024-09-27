@@ -1,2 +1,5 @@
+com\ump\restapi\HelloResource.class
 com\mycompany\charitydonations\JakartaRestConfiguration.class
 com\mycompany\charitydonations\resources\JakartaEE10Resource.class
+com\ump\restapi\HomeServelet.class
+com\ump\restapi\DemoApp.class
