@@ -238,12 +238,7 @@
       <!-- Portfolio Section -->
       <!-- /Portfolio Section -->
   
-      <!-- Pricing Section -->
-      <!-- /Pricing Section -->
-  
-      <!-- Faq Section -->
       
-  <!-- /Faq Section -->
   
       <!-- Team Section -->
       <!-- /Team Section -->
@@ -257,9 +252,9 @@
           <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
             <div class="col-xl-10">
               <div class="text-center">
-                <h3>Call To Action</h3>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <a class="cta-btn" href="#">Call To Action</a>
+                <h3>Make A Change</h3>
+                <p>Your generosity has the power to change lives. With just a small contribution, you can provide hope, support, and essential resources to those in need. Every donation, no matter the size, makes a meaningful difference.</p>
+                <a class="cta-btn" href="#">Donate</a>
               </div>
             </div>
           </div>
@@ -306,7 +301,7 @@
                       <div class="d-flex">
                         <img src="<%= request.getContextPath() %>/WebContent/assets/img/testimonials/testimonials-1.jpg" class="testimonial-img flex-shrink-0" alt="">
                         <div>
-                          <h3>Emily Johnson</h3>
+                          <h3>Danial Kenan </h3>
                           <h4>Community Member</h4>
                           <div class="stars">
                             <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
@@ -326,7 +321,7 @@
                       <div class="d-flex">
                         <img src="<%= request.getContextPath() %>/WebContent/assets/img/testimonials/testimonials-2.jpg" class="testimonial-img flex-shrink-0" alt="">
                         <div>
-                          <h3>Michael Adams</h3>
+                          <h3>Olalekan </h3>
                           <h4>Volunteer</h4>
                           <div class="stars">
                             <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
@@ -346,7 +341,7 @@
                       <div class="d-flex">
                         <img src="<%= request.getContextPath() %>/WebContent/assets/img/testimonials/testimonials-3.jpg" class="testimonial-img flex-shrink-0" alt="">
                         <div>
-                          <h3>Linda Carter</h3>
+                          <h3>Lattoyah</h3>
                           <h4>Beneficiary</h4>
                           <div class="stars">
                             <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
@@ -386,7 +381,7 @@
                       <div class="d-flex">
                         <img src="<%= request.getContextPath() %>/WebContent/assets/img/testimonials/testimonials-5.jpg" class="testimonial-img flex-shrink-0" alt="">
                         <div>
-                          <h3>Anna White</h3>
+                          <h3>Aluncedo</h3>
                           <h4>Community Leader</h4>
                           <div class="stars">
                             <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
@@ -436,80 +431,7 @@
       
                 <p class="post-category">Community Impact</p>
       
-                <h2 class="title">
-                  <a href="blog-details.html">Transforming Lives Through Education</a>
-                </h2>
-      
-                <div class="d-flex align-items-center">
-                  <img src="<%= request.getContextPath() %>/WebContent/assets/img/blog/blog-author.jpg" alt="" class="img-fluid post-author-img flex-shrink-0">
-                  <div class="post-meta">
-                    <p class="post-author">Emily Stone</p>
-                    <p class="post-date">
-                      <time datetime="2024-09-01">Sep 1, 2024</time>
-                    </p>
-                  </div>
-                </div>
-      
-              </article>
-            </div><!-- End post list item -->
-      
-            <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-              <article>
-      
-                <div class="post-img">
-                  <img src="<%= request.getContextPath() %>/WebContent/assets/img/blog/blog-2.jpg" alt="" class="img-fluid">
-                </div>
-      
-                <p class="post-category">Fundraising</p>
-      
-                <h2 class="title">
-                  <a href="blog-details.html">Join Us in Our Annual Fundraising Gala</a>
-                </h2>
-      
-                <div class="d-flex align-items-center">
-                  <img src="<%= request.getContextPath() %>/WebContent/assets/img/blog/blog-author-2.jpg" alt="" class="img-fluid post-author-img flex-shrink-0">
-                  <div class="post-meta">
-                    <p class="post-author">John Smith</p>
-                    <p class="post-date">
-                      <time datetime="2024-08-15">Aug 15, 2024</time>
-                    </p>
-                  </div>
-                </div>
-      
-              </article>
-            </div><!-- End post list item -->
-      
-            <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-              <article>
-      
-                <div class="post-img">
-                  <img src="<%= request.getContextPath() %>/WebContent/assets/img/blog/blog-3.jpg" alt="" class="img-fluid">
-                </div>
-      
-                <p class="post-category">Volunteer Stories</p>
-      
-                <h2 class="title">
-                  <a href="blog-details.html">A Day in the Life of a Volunteer</a>
-                </h2>
-      
-                <div class="d-flex align-items-center">
-                  <img src="<%= request.getContextPath() %>/WebContent/assets/img/blog/blog-author-3.jpg" alt="" class="img-fluid post-author-img flex-shrink-0">
-                  <div class="post-meta">
-                    <p class="post-author">Sarah Lee</p>
-                    <p class="post-date">
-                      <time datetime="2024-07-30">Jul 30, 2024</time>
-                    </p>
-                  </div>
-                </div>
-      
-              </article>
-            </div><!-- End post list item -->
-      
-          </div><!-- End recent posts list -->
-      
-        </div>
-      
-      </section>
+                
       
   
     </main>

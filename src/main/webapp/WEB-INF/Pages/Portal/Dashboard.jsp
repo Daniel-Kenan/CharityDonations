@@ -11,18 +11,7 @@
 <body class="bg-gray-100">
     <div class="flex h-screen">
         <!-- Sidebar -->
-        <aside class="w-64 bg-indigo-800 text-white p-6">
-            <h1 class="text-2xl font-bold mb-8">CharityPro</h1>
-            <nav>
-                <ul class="space-y-2">
-                    <li><a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-700 rounded focus:outline-none focus:bg-indigo-600 transition-colors"><i class="fas fa-tachometer-alt mr-3"></i>Dashboard</a></li>
-                    <li><a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-700 rounded focus:outline-none focus:bg-indigo-600 transition-colors"><i class="fas fa-bullhorn mr-3"></i>Campaigns</a></li>
-                    <li><a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-700 rounded focus:outline-none focus:bg-indigo-600 transition-colors"><i class="fas fa-users mr-3"></i>Donors</a></li>
-                    <li><a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-700 rounded focus:outline-none focus:bg-indigo-600 transition-colors"><i class="fas fa-chart-line mr-3"></i>Analytics</a></li>
-                    <li><a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-700 rounded focus:outline-none focus:bg-indigo-600 transition-colors"><i class="fas fa-cog mr-3"></i>Settings</a></li>
-                </ul>
-            </nav>
-        </aside>
+        <jsp:include page="../../Components/Sidebar.jsp" />
 
         <!-- Main Content -->
         <main class="flex-1 p-8 overflow-y-auto">
@@ -30,7 +19,7 @@
                 <h2 class="text-3xl font-semibold">Campaign Overview</h2>
                 <div class="flex items-center">
                     <input type="text" placeholder="Search..." class="px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Search campaigns">
-                    <button class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button class="bg-#E84545-600 text-white px-4 py-2 rounded-r-lg hover:bg-#E84545-700 focus:outline-none focus:ring-2 focus:ring-#E84545-500">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -40,45 +29,45 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                 <div class="bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
                     <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-indigo-100 text-indigo-600 mr-4">
+                        <div class="p-3 rounded-full bg-red-100 text-red-600 mr-4">
                             <i class="fas fa-flag text-2xl"></i>
                         </div>
                         <div>
                             <h3 class="text-lg font-semibold mb-1">Active Campaigns</h3>
-                            <p class="text-3xl font-bold text-indigo-600">5</p>
+                            <p class="text-3xl font-bold text-red-600">5</p>
                         </div>
                     </div>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
                     <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-green-100 text-green-600 mr-4">
+                        <div class="p-3 rounded-full bg-red-100 text-red-600 mr-4">
                             <i class="fas fa-dollar-sign text-2xl"></i>
                         </div>
                         <div>
                             <h3 class="text-lg font-semibold mb-1">Total Donations</h3>
-                            <p class="text-3xl font-bold text-green-600">$25,780</p>
+                            <p class="text-3xl font-bold text-green-600">R25,780</p>
                         </div>
                     </div>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
                     <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-purple-100 text-purple-600 mr-4">
+                        <div class="p-3 rounded-full bg-red-100 text-red-600 mr-4">
                             <i class="fas fa-users text-2xl"></i>
                         </div>
                         <div>
                             <h3 class="text-lg font-semibold mb-1">Donors This Month</h3>
-                            <p class="text-3xl font-bold text-purple-600">387</p>
+                            <p class="text-3xl font-bold text-red-600">387</p>
                         </div>
                     </div>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
                     <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-yellow-100 text-yellow-600 mr-4">
+                        <div class="p-3 rounded-full bg-red-100 text-red-600 mr-4">
                             <i class="fas fa-hand-holding-heart text-2xl"></i>
                         </div>
                         <div>
                             <h3 class="text-lg font-semibold mb-1">Beneficiaries Reached</h3>
-                            <p class="text-3xl font-bold text-yellow-600">1,250</p>
+                            <p class="text-3xl font-bold text-red-600">1,250</p>
                         </div>
                     </div>
                 </div>
@@ -116,7 +105,7 @@
                                 <td class="py-3 px-4">Clean Water Initiative</td>
                                 <td class="py-3 px-4">2024-05-01</td>
                                 <td class="py-3 px-4">2024-07-31</td>
-                                <td class="py-3 px-4">$50,000</td>
+                                <td class="py-3 px-4">R50,000</td>
                                 <td class="py-3 px-4">
                                     <div class="w-full bg-gray-200 rounded-full h-2.5">
                                         <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 45%"></div>
@@ -133,19 +122,7 @@
             </div>
 
             <!-- AI Assistant -->
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h3 class="text-xl font-semibold mb-4">Ask Our AI Assistant</h3>
-                <form id="aiForm" class="flex items-center space-x-4">
-                    <input type="text" id="aiInput" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Ask me anything about your campaigns...">
-                    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                        Ask
-                    </button>
-                </form>
-                <div id="aiResponse" class="mt-4 p-4 bg-gray-50 rounded-lg text-gray-700 border border-gray-200"></div>
-            </div>
-        </main>
-    </div>
-
+           
     <script>
         // Donation Trends Chart
         const ctx1 = document.getElementById('donationTrends').getContext('2d');
@@ -207,4 +184,4 @@
         });
     </script>
 </body>
-</html>
+</html> 

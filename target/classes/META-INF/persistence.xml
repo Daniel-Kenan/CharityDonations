@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+<persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+    
     <!-- Define Persistence Unit -->
     <persistence-unit name="my_persistence_unit">
+        
+        <!-- Provider (for example, Hibernate) -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        
+        <!-- Database Connection Details -->
+        <properties>
+            <!-- JDBC connection URL -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/my_database"/>
+            
+            <!-- JDBC driver class -->
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            
+            <!-- Database username -->
+            <property name="jakarta.persistence.jdbc.user" value="my_user"/>
+            
+            <!-- Database password -->
+            <property name="jakarta.persistence.jdbc.password" value="my_password"/>
+            
+            <!-- Hibernate-specific settings -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+        </properties>
         
     </persistence-unit>
 </persistence>

@@ -21,12 +21,9 @@
           <li><a href="<%= request.getContextPath() %>/home#portfolio">Success Stories</a></li>
           <li><a href="<%= request.getContextPath() %>/donate">Donate</a></li>
           
-          <li><a href="<%= request.getContextPath() %>/blog">Blog</a></li>
           <li class="dropdown"><a href="#"><span>Get Involved</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="#">Volunteer</a></li>
-              <li><a href="#">Fundraise</a></li>
-              <li><a href="#">Partner with Us</a></li>
               <li class="dropdown"><a href="#"><span>Events</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
                   <li><a href="<%= request.getContextPath() %>/upcoming-events">Upcoming Events</a></li>

@@ -15,7 +15,7 @@
     </head>
     <body>
     <jsp:include page="../Components/Navigation.jsp" /> 
-    <style>#toggleChatbot{background-color: #E84545 !important;}</style>
+    <style>#toggleChatbot{background-color: #024aa7 !important;}</style>
   
 
     <main class="main">
@@ -33,7 +33,7 @@
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
           <h2>Contact</h2>
-          <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+          <p>We'd Love to Hear from You!</p>
         </div><!-- End Section Title -->
   
         <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -47,8 +47,8 @@
                   <div class="info-item" data-aos="fade" data-aos-delay="200">
                     <i class="bi bi-geo-alt"></i>
                     <h3>Address</h3>
-                    <p>A108 Adam Street</p>
-                    <p>New York, NY 535022</p>
+                    <p>234 Penny Street</p>
+                    <p>Nelspruit, 1201</p>
                   </div>
                 </div><!-- End Info Item -->
   
@@ -56,8 +56,8 @@
                   <div class="info-item" data-aos="fade" data-aos-delay="300">
                     <i class="bi bi-telephone"></i>
                     <h3>Call Us</h3>
-                    <p>+1 5589 55488 55</p>
-                    <p>+1 6678 254445 41</p>
+                    <p>+ 0870287975</p>
+                    <p>+076882780</p>
                   </div>
                 </div><!-- End Info Item -->
   
@@ -65,8 +65,8 @@
                   <div class="info-item" data-aos="fade" data-aos-delay="400">
                     <i class="bi bi-envelope"></i>
                     <h3>Email Us</h3>
-                    <p>info@example.com</p>
-                    <p>contact@example.com</p>
+                    <p>info@PledgeForChange.com</p>
+                    <p>contactPledgeForChange.com</p>
                   </div>
                 </div><!-- End Info Item -->
   
