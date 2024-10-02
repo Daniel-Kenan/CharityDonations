@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-120">
     <div class="flex h-screen">
         <!-- Sidebar -->
         <jsp:include page="../../Components/Sidebar.jsp" />
@@ -29,18 +29,18 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                 <div class="bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
                     <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-red-100 text-red-600 mr-4">
+                        <div class="p-3 rounded-full bg-gray-100 text-gray-600 mr-4">
                             <i class="fas fa-flag text-2xl"></i>
                         </div>
                         <div>
                             <h3 class="text-lg font-semibold mb-1">Active Campaigns</h3>
-                            <p class="text-3xl font-bold text-red-600">5</p>
+                            <p class="text-3xl font-bold text-gray-600">5</p>
                         </div>
                     </div>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
                     <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-red-100 text-red-600 mr-4">
+                        <div class="p-3 rounded-full bg-green-100 text-green-600 mr-4">
                             <i class="fas fa-dollar-sign text-2xl"></i>
                         </div>
                         <div>
@@ -51,23 +51,23 @@
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
                     <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-red-100 text-red-600 mr-4">
+                        <div class="p-3 rounded-full bg-gray-100 text-gray-600 mr-4">
                             <i class="fas fa-users text-2xl"></i>
                         </div>
                         <div>
                             <h3 class="text-lg font-semibold mb-1">Donors This Month</h3>
-                            <p class="text-3xl font-bold text-red-600">387</p>
+                            <p class="text-3xl font-bold text-gray-600">387</p>
                         </div>
                     </div>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
                     <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-red-100 text-red-600 mr-4">
+                        <div class="p-3 rounded-full bg-gray-100 text-gray-600 mr-4">
                             <i class="fas fa-hand-holding-heart text-2xl"></i>
                         </div>
                         <div>
                             <h3 class="text-lg font-semibold mb-1">Beneficiaries Reached</h3>
-                            <p class="text-3xl font-bold text-red-600">1,250</p>
+                            <p class="text-3xl font-bold text-gray-600">1,250</p>
                         </div>
                     </div>
                 </div>
