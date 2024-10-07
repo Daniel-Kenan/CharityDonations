@@ -82,43 +82,7 @@
                 </div>
             </div>
 
-            <!-- Recent Campaigns Table -->
-            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
-                <h3 class="text-xl font-semibold mb-4">Recent Campaigns</h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full">
-                        <thead>
-                            <tr class="bg-gray-100">
-                                <th class="text-left py-3 px-4 font-semibold text-sm">Campaign Name</th>
-                                <th class="text-left py-3 px-4 font-semibold text-sm">Start Date</th>
-                                <th class="text-left py-3 px-4 font-semibold text-sm">End Date</th>
-                                <th class="text-left py-3 px-4 font-semibold text-sm">Goal</th>
-                                <th class="text-left py-3 px-4 font-semibold text-sm">Progress</th>
-                                <th class="text-left py-3 px-4 font-semibold text-sm">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b">
-                                <td class="py-3 px-4">Clean Water Initiative</td>
-                                <td class="py-3 px-4">2024-05-01</td>
-                                <td class="py-3 px-4">2024-07-31</td>
-                                <td class="py-3 px-4">R50,000</td>
-                                <td class="py-3 px-4">
-                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                        <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 45%"></div>
-                                    </div>
-                                </td>
-                                <td class="py-3 px-4">
-                                    <button class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 focus:outline-none">View</button>
-                                </td>
-                            </tr>
-                            <!-- More rows as needed -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- AI Assistant -->
+       
            
     <script>
         // Donation Trends Chart
