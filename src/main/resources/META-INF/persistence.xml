@@ -14,7 +14,11 @@
         <!-- JNDI Data Source - this should be placed after classes or other similar elements -->
         <properties>
             <property name="jakarta.persistence.jta-data-source" value="jdbc/postgres_live"/>
-           
+             
+            <property name="eclipselink.logging.level" value="FINE"/> <!-- Adjust the logging level as needed -->
+            <property name="eclipselink.logging.level.sql" value="FINE"/> <!-- For SQL logs -->
+            <property name="eclipselink.logging.level.transaction" value="FINE"/> <!-- For transaction logs -->
+            <!-- Other properties can be added here as necessary -->
         </properties>
     </persistence-unit>
 </persistence>

@@ -4,10 +4,46 @@
     <jsp:include page="./Partials/Head.jsp" />
 </head>
 <body class="bg-gray-100">
+    <style>
+        #iframeContainer {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: white;
+            z-index: 999;
+            border: 1px solid #ccc;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+           
+        
+        }
+        #closeButton {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+    </style>
+    <div id="iframeContainer">
+        <button id="closeButton">Close</button>
+        <iframe id="iframe" src=""></iframe>
+    </div>
+
     <div class="flex h-screen">
+        
         <!-- Sidebar (same as dashboard) -->
         <jsp:include page="../../Components/Sidebar.jsp" />
-
+  
 
         <!-- Main Content -->
         <main class="flex-1 p-8 overflow-y-auto">
@@ -45,67 +81,16 @@
             </div>
 
             <!-- Campaigns Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div id="Campaigns" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Campaign Card -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <img src="/api/placeholder/400/200" alt="Campaign Image" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2">Clean Water Initiative</h3>
-                        <p class="text-gray-600 mb-4">Provide clean water to rural communities</p>
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="text-sm text-gray-500">Goal: $50,000</span>
-                            <span class="text-sm font-semibold text-green-600">Raised: $22,500</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 mb-4">
-                            <div class="bg-green-600 h-2.5 rounded-full" style="width: 45%"></div>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">Ends in 30 days</span>
-                            <button class="text-indigo-600 hover:text-indigo-800 font-semibold">View Details</button>
-                        </div>
-                    </div>
-                </div>
+                
 
                 <!-- Repeat similar campaign cards for other campaigns -->
                 <!-- Campaign Card 2 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <img src="/api/placeholder/400/200" alt="Campaign Image" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2">Education for All</h3>
-                        <p class="text-gray-600 mb-4">Support underprivileged children's education</p>
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="text-sm text-gray-500">Goal: $75,000</span>
-                            <span class="text-sm font-semibold text-green-600">Raised: $45,000</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 mb-4">
-                            <div class="bg-green-600 h-2.5 rounded-full" style="width: 60%"></div>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">Ends in 45 days</span>
-                            <button class="text-indigo-600 hover:text-indigo-800 font-semibold">View Details</button>
-                        </div>
-                    </div>
-                </div>
+                
 
                 <!-- Campaign Card 3 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <img src="/api/placeholder/400/200" alt="Campaign Image" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2">Hunger Relief Program</h3>
-                        <p class="text-gray-600 mb-4">Provide meals to homeless shelters</p>
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="text-sm text-gray-500">Goal: $100,000</span>
-                            <span class="text-sm font-semibold text-green-600">Raised: $30,000</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 mb-4">
-                            <div class="bg-green-600 h-2.5 rounded-full" style="width: 30%"></div>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">Ends in 60 days</span>
-                            <button class="text-indigo-600 hover:text-indigo-800 font-semibold">View Details</button>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
 
             <!-- Pagination -->
@@ -178,5 +163,102 @@
             }
         }
     </script>
+    <script>
+
+
+
+
+        fetch('https://media.nextgensell.com/files?folder=blog')
+  .then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json(); // Parse the JSON from the response
+})
+.then(data => {
+    console.log(data)
+    // Filter the array to get files with names ending in '.md'
+    let mdFiles = data
+        .filter(item => item.type === "file" && item.name.endsWith('.md'))
+    mdFiles.map(item => ({
+             // Copy the existing properties
+            name: `https://media.nextgensell.com/files/blog/${item.name}` // Prepend the URL
+        }));
+
+    console.log(mdFiles);
+
+    // Assuming you want to convert all markdown files to HTML
+    const converter = new showdown.Converter();
+
+    // You can iterate through the mdFiles array to convert each file's content
+    mdFiles.forEach(mdFile => {
+        const url = "https://media.nextgensell.com/files/blog"+mdFile.name; // Get the URL of the Markdown file
+        console.log(url)
+        // Fetch the markdown content from the URL
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                console.log(response)
+                return response.text(); // Parse the text from the response
+            })
+            .then(markdown => {
+                console.log(markdown)
+                const htmlContent = converter.makeHtml(markdown); // Convert markdown to HTML
+                // console.log(htmlContent); // Log the converted HTML
+                // You can now do something with htmlContent, like displaying it on the page
+                let card = generateCampaignHtml(htmlContent,url)
+                document.getElementById("Campaigns").innerHTML +=  card; 
+            })
+            .catch(error => {
+                console.error('There was a problem fetching the markdown file:', error);
+            });
+    });
+
+    // Handle the data received from the server
+})
+.catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+});
+
+
+    </script>
+    
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+
+<script>
+    function openPage(link) {
+        fetch(link)
+            .then(response => response.text())  // Fetch the markdown content
+            .then(markdown => {
+                const converter = new showdown.Converter();  // Initialize Showdown
+                const html = converter.makeHtml(markdown);  // Convert markdown to HTML
+                const iframeDoc = document.getElementById('iframe').contentDocument || document.getElementById('iframe').contentWindow.document;
+                
+                // Set the iframe content
+                iframeDoc.open();
+                iframeDoc.write("<div style='width:100%;display:flex;justify-content:center'><div>"+html+"</div></div>");
+                iframeDoc.close();
+                
+                document.getElementById('iframeContainer').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error loading markdown:', error);
+            });
+    }
+
+    document.getElementById('closeButton').addEventListener('click', function() {
+        document.getElementById('iframeContainer').style.display = 'none';
+        const iframeDoc = document.getElementById('iframe').contentDocument || document.getElementById('iframe').contentWindow.document;
+        iframeDoc.open();
+        iframeDoc.write('');  // Clear the iframe content
+        iframeDoc.close();
+    });
+</script>
+
 </body>
 </html>

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -27,7 +28,7 @@
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            min-height: calc(100vh - 40px); /* Full viewport height minus padding */
+            min-height: calc(100vh - 40px);
             overflow-y: auto;
         }
         .sidebar {
@@ -38,7 +39,7 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-right: 20px;
-            min-height: calc(100vh - 40px); /* Same as editor, full height */
+            min-height: calc(100vh - 40px);
             overflow-y: auto;
         }
         .sidebar input[type="text"], .sidebar input[type="checkbox"] {
@@ -75,6 +76,7 @@
         h3 {
             color: #333;
         }
+        
     </style>
 </head>
 <body>
@@ -106,12 +108,41 @@
                 quote: Quote,
                 code: CodeTool,
                 image: {
-                    class: ImageTool,
-                    config: {
-                        endpoints: {},  // No file uploads, only URL
-                        byUrl: true
-                    }
+    class: ImageTool,
+    config: {
+        endpoints: {
+            byFile: 'https://media.nextgensell.com/files/upload', // Endpoint for uploading images
+            byUrl: true // Allows uploading by URL
+        },
+        field: 'file', // This should match the backend field name
+        uploader: {
+            uploadByFile: async (file) => {
+                const formData = new FormData();
+                const filename = `${Date.now()}-${file.name}`
+                formData.append('file', file,filename);
+                formData.append('folder', 'blog');  // Specify the folder
+
+                const response = await fetch('https://media.nextgensell.com/files/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to upload image');
                 }
+
+                const data = await response.json();
+                return {
+                    success: 1,
+                    file: {
+                        url: `https://media.nextgensell.com/files/blog/${filename}` // URL of the uploaded file
+                    }
+                };
+            }
+        }
+    }
+}
+
             },
             data: {
                 blocks: [
@@ -126,6 +157,18 @@
                         type: "paragraph",
                         data: {
                             text: "Your efforts can change the world 🌍. Set a goal, share your story, and inspire others to contribute to a cause you believe in! 💡✨"
+                        }
+                    },
+                    {
+                        type: "image",
+                        data: {
+                            file: {
+                                url: "https://media.nextgensell.com/files/blog/photo-1504159506876-f8338247a14a.avif"
+                            },
+                            caption: "A visual representation of our cause",
+                            withBorder: true,
+                            withBackground: false,
+                            stretched: false
                         }
                     },
                     {
@@ -151,26 +194,9 @@
                         data: {
                             text: "Together, we can make a difference! 💪"
                         }
-                    },
-                    {
-                        type: "quote",
-                        data: {
-                            text: "“No act of kindness, no matter how small, is ever wasted.” – Aesop",
-                            caption: "Motivation"
-                        }
-                    },
-                    {
-                        type: "image",
-                        data: {
-                            file: {
-                                url: "https://via.placeholder.com/500"
-                            },
-                            caption: "A visual representation of our cause",
-                            withBorder: true,
-                            withBackground: false,
-                            stretched: false
-                        }
                     }
+                   
+                    
                 ]
             }
         });
@@ -178,22 +204,14 @@
         // Function to convert EditorJS data to markdown and display in preview
         function previewCampaign() {
             editor.save().then((outputData) => {
-                const acceptPayments = document.getElementById('acceptPayments').checked;
                 const campaignTarget = document.getElementById('campaignTarget').value;
 
                 const markdownContent = convertToMarkdown(outputData);
                 const htmlContent = marked.parse(markdownContent);
 
-                // Log raw markdown to console
-                console.log("Raw Markdown Content:\n", markdownContent);
-
-                // Send markdown content via email (backend implementation required)
-                sendMarkdownEmail(markdownContent);
-
                 // Display the content in the preview area
                 document.getElementById('previewArea').innerHTML = `
                     <h4>Campaign Preview:</h4>
-                    <p><strong>Accept Payments:</strong> ${acceptPayments ? 'Yes' : 'No'}</p>
                     <p><strong>Target:</strong> ¥${campaignTarget}</p>
                     ${htmlContent}
                 `;
@@ -233,34 +251,41 @@
             return markdown;
         }
 
-        // Function to send the markdown content via email (to your backend)
-        function sendMarkdownEmail(markdownContent) {
-            fetch('your-backend-url/send-email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    markdownContent: markdownContent,
-                }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Email sent successfully:', data);
-            })
-            .catch((error) => {
-                console.error('Error sending email:', error);
-            });
-        }
-
+        // Function to publish campaign and upload markdown file
         function publishCampaign() {
             editor.save().then((outputData) => {
-                const acceptPayments = document.getElementById('acceptPayments').checked;
                 const campaignTarget = document.getElementById('campaignTarget').value;
 
-                console.log('Campaign Published with following data:');
+                // Convert outputData to markdown
+                const markdownContent = convertToMarkdown(outputData);
+                
+                // Create a Blob from the markdown content
+                const blob = new Blob([markdownContent], { type: 'text/markdown' });
+                const formData = new FormData();
+                formData.append('file', blob, `${Date.now()}.md`); // Save the file as title.md
+                formData.append('folder', 'blog'); // Specify the folder as 'blog'
+
+                // Send the markdown file to the backend
+                fetch('https://media.nextgensell.com/files/upload', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Markdown file uploaded successfully:', data);
+                    // Handle success (e.g., show a success message to the user)
+                })
+                .catch((error) => {
+                    console.error('Error uploading markdown file:', error);
+                });
+
+                console.log('Campaign Published with the following data:');
                 console.log({
-                    acceptPayments,
                     campaignTarget,
                     content: outputData
                 });
