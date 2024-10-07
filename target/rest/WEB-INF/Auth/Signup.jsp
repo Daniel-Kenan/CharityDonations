@@ -88,10 +88,138 @@ font-style: normal;
             <input type="email" name="email" placeholder="Enter Email Address" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" required>
           </div>
           <!-- Password -->
-          <div class="mt-4">
+          <div class="mt-4 relative">
             <label class="block text-gray-700">Password</label>
-            <input type="password" name="password" placeholder="Enter Password" minlength="6" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" required>
-          </div>
+            <input type="password" id="password" name="password" placeholder="Enter Password" minlength="8" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" required>
+            
+            <!-- Password validation bar -->
+            <div id="password-validation" class="left-0 top-full mt-2 w-full p-4 bg-white shadow-lg rounded-lg border border-gray-300">
+              <!-- Password strength bar --><span>strength</span>
+              <div id="password-bar" class="h-2 rounded-full bg-gray-200 mt-1">
+                <div id="password-bar-fill" class="h-full rounded-full bg-red-500" style="width: 0;"></div>
+              </div>
+              
+              <!-- Validation criteria list -->
+              <ul class="text-sm text-gray-600 mt-3 space-y-1">
+                <li id="char-length" class="flex items-center">
+                  <svg class="w-4 h-4 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  At least 8 characters
+                </li>
+                <li id="capital-letter" class="flex items-center">
+                  <svg class="w-4 h-4 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  Includes a capital letter
+                </li>
+                <li id="number" class="flex items-center">
+                  <svg class="w-4 h-4 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  Includes a number
+                </li>
+                <li id="symbol" class="flex items-center">
+                  <svg class="w-4 h-4 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  Includes a symbol
+                </li>
+              </ul>
+            </div>
+            
+            <style>
+              #password-validation {
+                z-index: 10; /* Ensure it shows above other elements */
+              }
+              #password-bar-fill {
+                transition: width 0.4s ease-in-out; /* Smooth animation for the strength bar */
+              }
+              .valid svg {
+                color: green; /* Turn the checkmark green when valid */
+              }
+              .invalid svg {
+                color: red; /* Default red for invalid */
+              }
+            </style>
+          
+          <script>
+            const passwordInput = document.getElementById('password');
+            const passwordBarFill = document.getElementById('password-bar-fill');
+            const charLength = document.getElementById('char-length');
+            const capitalLetter = document.getElementById('capital-letter');
+            const number = document.getElementById('number');
+            const symbol = document.getElementById('symbol');
+          
+            passwordInput.addEventListener('input', () => {
+              const value = passwordInput.value;
+              let strength = 0;
+          
+              // Validate length
+              if (value.length >= 8) {
+                charLength.classList.remove('invalid');
+                charLength.classList.add('valid');
+                strength += 25;
+              } else {
+                charLength.classList.remove('valid');
+                charLength.classList.add('invalid');
+              }
+          
+              // Validate capital letter
+              if (/[A-Z]/.test(value)) {
+                capitalLetter.classList.remove('invalid');
+                capitalLetter.classList.add('valid');
+                strength += 25;
+              } else {
+                capitalLetter.classList.remove('valid');
+                capitalLetter.classList.add('invalid');
+              }
+          
+              // Validate number
+              if (/\d/.test(value)) {
+                number.classList.remove('invalid');
+                number.classList.add('valid');
+                strength += 25;
+              } else {
+                number.classList.remove('valid');
+                number.classList.add('invalid');
+              }
+          
+              // Validate symbol
+              if (/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
+                symbol.classList.remove('invalid');
+                symbol.classList.add('valid');
+                strength += 25;
+              } else {
+                symbol.classList.remove('valid');
+                symbol.classList.add('invalid');
+              }
+          
+              // Update password strength bar
+              passwordBarFill.style.width = strength + '%';
+          
+              // Change bar color based on strength
+              if (strength < 50) {
+                passwordBarFill.classList.remove('bg-green-500', 'bg-yellow-500');
+                passwordBarFill.classList.add('bg-red-500');
+              } else if (strength < 75) {
+                passwordBarFill.classList.remove('bg-red-500', 'bg-green-500');
+                passwordBarFill.classList.add('bg-yellow-500');
+              } else {
+                passwordBarFill.classList.remove('bg-red-500', 'bg-yellow-500');
+                passwordBarFill.classList.add('bg-green-500');
+              }
+            });
+          </script>
+          
+          <style>
+            .valid {
+              color: green;
+            }
+            .invalid {
+              color: red;
+            }
+          </style>
           <!-- Repeat Password -->
           <div class="mt-4">
             <label class="block text-gray-700">Repeat Password</label>
