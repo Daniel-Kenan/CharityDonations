@@ -17,11 +17,11 @@
                     <i class="fas fa-users mr-3"></i>Donors
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a href="<%= request.getContextPath() %>/Analytics" class="flex items-center py-2 px-4 hover:bg-red-700 rounded focus:outline-none transition-colors" id="analytics-link">
                     <i class="fas fa-chart-line mr-3"></i>Analytics
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a href="<%= request.getContextPath() %>/Settings" class="flex items-center py-2 px-4 hover:bg-red-700 rounded focus:outline-none transition-colors" id="settings-link">
                     <i class="fas fa-cog mr-3"></i>Settings
