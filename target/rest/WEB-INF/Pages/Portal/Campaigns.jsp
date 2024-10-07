@@ -140,27 +140,7 @@
 
     <script>
         function openNewCampaignModal() {
-            document.getElementById('newCampaignModal').classList.remove('hidden');
-        }
-
-        function closeNewCampaignModal() {
-            document.getElementById('newCampaignModal').classList.add('hidden');
-        }
-
-        document.getElementById('closeCampaignModalBtn').addEventListener('click', closeNewCampaignModal);
-
-        document.getElementById('createCampaignBtn').addEventListener('click', function() {
-            // Here you would typically send the form data to your backend
-            alert('Campaign created successfully!');
-            closeNewCampaignModal();
-        });
-
-        // Close modal if clicking outside of it
-        window.onclick = function(event) {
-            var modal = document.getElementById('newCampaignModal');
-            if (event.target == modal) {
-                closeNewCampaignModal();
-            }
+            location.href="<%= request.getContextPath() %>/AddCampaign"
         }
     </script>
     <script>

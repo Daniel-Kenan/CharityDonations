@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author sdani
+ * @author sdaniel
  */
 @WebServlet(name = "Onboarding", urlPatterns = {"/Onboarding"})
 public class Onboarding extends HttpServlet {

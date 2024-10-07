@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Published</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Prevent scrolling during confetti */
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+        }
+        p {
+            font-size: 1.2em;
+            color: #666;
+        }
+        a {
+            color: #3b82f6; /* Tailwind blue */
+            text-decoration: underline;
+        }
+        .confetti {
+            position: absolute;
+            opacity: 0.8;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your page is published!</h1>
+        <p>Congratulations! 🎉</p>
+        <p>
+            <a id="publishedLink" href="#" target="_blank">Check your published page</a>
+        </p>
+    </div>
+
+    <script>
+        // Get the link from URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const pageLink = params.get('link');
+        const publishedLink = document.getElementById('publishedLink');
+
+        // Set the dynamic link
+        if (pageLink) {
+            publishedLink.href = pageLink;
+        } else {
+            publishedLink.textContent = "No link provided!";
+            publishedLink.href = "#"; // Disable link
+        }
+
+        // Confetti animation
+        let confettiInterval;
+
+        function createConfetti() {
+            const confettiElement = document.createElement('div');
+            confettiElement.classList.add('confetti');
+
+            // Randomly select shape
+            const shapeType = Math.random() < 0.5 ? 'square' : (Math.random() < 0.5 ? 'circle' : 'triangle');
+
+            // Set styles based on shape type
+            if (shapeType === 'square') {
+                confettiElement.style.width = `${Math.random() * 10 + 5}px`;
+                confettiElement.style.height = `${Math.random() * 10 + 5}px`;
+                confettiElement.style.backgroundColor = randomColor();
+            } else if (shapeType === 'circle') {
+                confettiElement.style.width = `${Math.random() * 10 + 5}px`;
+                confettiElement.style.height = confettiElement.style.width;
+                confettiElement.style.borderRadius = '50%'; // Make it a circle
+                confettiElement.style.backgroundColor = randomColor();
+            } else if (shapeType === 'triangle') {
+                confettiElement.style.width = '0';
+                confettiElement.style.height = '0';
+                confettiElement.style.borderLeft = `${Math.random() * 10 + 5}px solid transparent`;
+                confettiElement.style.borderRight = `${Math.random() * 10 + 5}px solid transparent`;
+                confettiElement.style.borderBottom = `${Math.random() * 10 + 5}px solid ${randomColor()}`;
+            }
+
+            confettiElement.style.position = 'absolute';
+            confettiElement.style.top = `${-10}px`;
+            confettiElement.style.left = `${Math.random() * 100}vw`;
+            confettiElement.style.opacity = Math.random() + 0.3;
+            confettiElement.style.zIndex = 1000;
+            confettiElement.style.animation = `fall ${Math.random() * 3 + 3}s linear forwards`;
+            document.body.appendChild(confettiElement);
+
+            // Remove the confetti element after falling
+            setTimeout(() => confettiElement.remove(), 4000);
+        }
+
+        function randomColor() {
+            const colors = ['#ff4081', '#3f51b5', '#4caf50', '#ffeb3b', '#f44336', '#ff9800', '#9c27b0'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function startConfetti() {
+            // Generate more confetti in the beginning
+            let initialCount = 0;
+            const maxInitialCount = 100; // Number of confetti pieces to create initially
+            const initialInterval = setInterval(() => {
+                if (initialCount < maxInitialCount) {
+                    createConfetti();
+                    initialCount++;
+                } else {
+                    clearInterval(initialInterval);
+                }
+            }, 50); // Create new confetti every 50ms for the initial burst
+
+            // After initial burst, continue creating confetti at a slower pace
+            confettiInterval = setInterval(createConfetti, 100); // Continue at 100ms intervals
+        }
+
+        function stopConfetti() {
+            clearInterval(confettiInterval);
+        }
+
+        // Start confetti
+        startConfetti();
+
+        // Stop confetti after 5 seconds
+        setTimeout(stopConfetti, 5000);
+
+        // Confetti falling animation
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(${Math.random() * 360}deg);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

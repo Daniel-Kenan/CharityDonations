@@ -7,7 +7,7 @@ import jakarta.persistence.Column;
 
 /**
  *
- * @author sdani
+ * @author sdaniel
  */
 @Entity
 @Table(name = "users")
