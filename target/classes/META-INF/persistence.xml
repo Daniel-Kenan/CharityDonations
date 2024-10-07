@@ -5,7 +5,7 @@
 
     <!-- Define Persistence Unit -->
     <persistence-unit name="CharityDonationUP" transaction-type="JTA">
-
+ <jta-data-source>jdbc/postgres_live</jta-data-source>
         <!-- List of Entity Classes -->
         <class>ump.charitydonations.model.User</class>
 
