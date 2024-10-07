@@ -12,6 +12,7 @@ com\ump\restapi\HomeServelet.class
 com\ump\restapi\DemoApp.class
 com\ump\restapi\ContactServlet.class
 ump\charitydonations\model\User.class
+com\ump\portal\Onboarding.class
 com\mycompany\chariydonations\implementation\UserDaoImpl.class
 com\ump\restapi\LoginServlet.class
 com\ump\portal\Settings.class

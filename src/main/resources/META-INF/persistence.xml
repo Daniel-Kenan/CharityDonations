@@ -1,33 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence" 
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
 
     <!-- Define Persistence Unit -->
-    <persistence-unit name="CharityDonationUP">
-        
-        <!-- Provider: EclipseLink -->
-        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        
-        <!-- Database Connection Details -->
+    <persistence-unit name="CharityDonationUP" transaction-type="JTA">
+
+        <!-- List of Entity Classes -->
+        <class>ump.charitydonations.model.User</class>
+
+        <!-- Optional elements (you can add other optional tags like exclude-unlisted-classes, validation-mode) -->
+
+        <!-- JNDI Data Source - this should be placed after classes or other similar elements -->
         <properties>
-            <!-- JDBC connection URL -->
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/CharityDonation"/>
-            
-            <!-- JDBC driver class -->
-            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            
-            <!-- Database username -->
-            <property name="jakarta.persistence.jdbc.user" value="root"/>
-            
-            <!-- Database password -->
-            <property name="jakarta.persistence.jdbc.password" value="S07tw@r3"/>
-            
-            <!-- EclipseLink-specific settings -->
-            <property name="eclipselink.target-database" value="MySQL"/>
-            <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
-            <property name="eclipselink.logging.level" value="FINE"/>
+            <property name="jakarta.persistence.jta-data-source" value="jdbc/postgres_live"/>
+           
         </properties>
-        
     </persistence-unit>
 </persistence>

@@ -51,11 +51,11 @@
             <artifactId>jakarta.mail-api</artifactId>
             <version>2.1.3</version>
         </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.26</version> <!-- Make sure this version matches the version you're using -->
-        </dependency>
+ <dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>42.2.1</version> <!-- Adjust version if needed -->
+</dependency>
         
     </dependencies>
 
