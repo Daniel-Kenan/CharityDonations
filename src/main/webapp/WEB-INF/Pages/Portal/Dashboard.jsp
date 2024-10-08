@@ -14,8 +14,15 @@
         <main class="flex-1 p-8 overflow-y-auto">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-3xl font-semibold">Campaign Overview</h2>
+                <%
+    // Get the session attribute
+    String email = (String) session.getAttribute("email");
+%>
+
+<!-- Display the email -->
+<p>Email: <%= email %></p>
                 <div class="flex items-center">
-                    <input type="text" placeholder="Search..." class="px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Search campaigns">
+                    <input type="button" value="AI"  id="nextgensell_embedface1Btn" class="px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Search campaigns">
                     <button class="bg-#E84545-600 text-white px-4 py-2 rounded-r-lg hover:bg-#E84545-700 focus:outline-none focus:ring-2 focus:ring-#E84545-500">
                         <i class="fas fa-search"></i>
                     </button>
@@ -143,6 +150,62 @@
             // Mock AI response
             aiResponse.innerHTML = `You asked: "${aiInput}". Sorry, the AI assistant is currently not available.`;
         });
+    </script>
+
+<script>
+    const iframe = document.createElement('iframe');
+    const url = false ? "https://ai.nextgensell.com" : "http://localhost:8765";
+    iframe.src = url+`/plugin?access_token=89c59fj3crjrt4543dmc`;
+    Object.assign(iframe.style, {
+        position: 'absolute',
+        top: '0',
+        right: '-600px', // Start hidden off-screen
+        width: '600px',
+        height: '100%',
+        borderLeft: '1px solid slategrey', // Left border only
+        borderTop: 'none', // No top border
+        borderRight: 'none', // No right border
+        borderBottom: 'none', // No bottom border
+        transition: 'right 0.5s ease',
+        zIndex: '99999999999999999999999999999999999999999999999999 !important', // Ensure the iframe is above the close button
+    });
+    
+    const closeButton = document.createElement('button');
+    closeButton.textContent = '-';
+    
+    // Close button styles in JavaScript
+    Object.assign(closeButton.style, {
+        position: 'absolute',
+        top: '10px',
+        right: '10px',
+        color: 'black',
+        padding: '5px 10px',
+        cursor: 'pointer',
+        borderRadius: '3px',
+        fontWeight: 'bold',
+        zIndex: '10', // Ensure the button is above the iframe
+        display: 'none', // Initially hidden
+    });
+    
+    // Close button logic
+    closeButton.addEventListener('click', () => {
+        iframe.style.right = '-600px'; // Slide out the iframe
+        closeButton.style.display = 'none'; // Hide the close button
+    });
+    
+    const toggleButton = document.getElementById('nextgensell_embedface1Btn');
+    toggleButton.addEventListener('click', () => {
+        if (iframe.style.right === '0px') {
+            iframe.style.right = '-600px'; // Slide out
+            closeButton.style.display = 'none'; // Hide the close button
+        } else {
+            iframe.style.right = '0'; // Slide in
+            closeButton.style.display = 'block'; // Show the close button
+        }
+    });
+    
+    document.body.appendChild(iframe);
+    document.body.appendChild(closeButton); // Append the close button to the body
     </script>
 </body>
 </html> 

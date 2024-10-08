@@ -56,7 +56,11 @@
     <artifactId>postgresql</artifactId>
     <version>42.2.1</version> <!-- Adjust version if needed -->
 </dependency>
-        
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>jakarta.persistence</artifactId>
+            <version>2.2.3</version>
+        </dependency>
     </dependencies>
 
     <build>

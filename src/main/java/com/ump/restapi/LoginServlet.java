@@ -31,6 +31,8 @@ public class LoginServlet extends HttpServlet {
 
         if (result.equals("Login successful")) {
             // Redirect to Onboarding or home page
+              request.getSession().setAttribute("email",email );
+
             response.sendRedirect(request.getContextPath() + "/Onboarding");
         } else {
             // Set an error message and return to the login page

@@ -1,4 +1,5 @@
 com\ump\restapi\SignUpServlet.class
+com\mycompany\service\CharityService.class
 com\mycompany\repository\UserRepository.class
 com\ump\restapi\UpcomingServlet.class
 com\ump\portal\AddCampaign.class
@@ -8,6 +9,7 @@ com\ump\restapi\ContactServlet.class
 com\mycompany\service\UserService.class
 com\mycompany\model\User.class
 com\ump\portal\Onboarding.class
+com\mycompany\model\Charity.class
 UserService\java.class
 com\ump\portal\Campaigns.class
 com\ump\portal\Campaign.class
@@ -15,9 +17,11 @@ com\ump\portal\Dashboard.class
 com\ump\restapi\HelloResource.class
 com\mycompany\charitydonations\JakartaRestConfiguration.class
 com\ump\portal\Analytics.class
+com\ump\portal\LogoutServlet.class
 com\mycompany\charitydonations\resources\JakartaEE10Resource.class
 com\ump\portal\Celebration.class
 com\ump\portal\Donors.class
 com\ump\portal\Donate.class
 com\ump\restapi\LoginServlet.class
 com\ump\portal\Settings.class
+com\mycompany\repository\CharityRepository.class

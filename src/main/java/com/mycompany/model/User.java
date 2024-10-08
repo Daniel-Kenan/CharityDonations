@@ -80,7 +80,7 @@ public class User {
     public String getCellphoneNumber() {
         return cellphoneNumber;
     }
-
+   
     public void setCellphoneNumber(String cellphoneNumber) {
         this.cellphoneNumber = cellphoneNumber;
     }

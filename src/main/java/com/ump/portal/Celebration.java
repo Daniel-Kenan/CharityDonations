@@ -1,67 +1,63 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package com.ump.portal;
 
+import com.mycompany.service.CharityService;
+import jakarta.ejb.EJB;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author sdaniel
- */
 @WebServlet(name = "Celebration", urlPatterns = {"/Celebration"})
 public class Celebration extends HttpServlet {
 
+    @EJB
+    private CharityService charityService; // Injecting the CharityService
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   
+         Long userId = 1L; // Example user ID
+        String status = "Active"; // Example status
+        String startDate = "2024-01-01"; // Example start date
+        String endDate = "2024-12-31"; // Example end date
+        String url = "http://example.com"; // Example URL
+
+        // Call the charity service to register the charity
+        String result = charityService.registerCharity(userId, status, startDate, endDate, url);
+        
+        
         request.getRequestDispatcher("/WEB-INF/Pages/Celebration.html").forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        // Create a dummy charity
+        Long userId = 1L; // Example user ID
+        String status = "Active"; // Example status
+        String startDate = "2024-01-01"; // Example start date
+        String endDate = "2024-12-31"; // Example end date
+        String url = "http://example.com"; // Example URL
+
+        // Call the charity service to register the charity
+        String result = charityService.registerCharity(userId, status, startDate, endDate, url);
+
+        // Set the result message as a request attribute to display on the page
+        request.setAttribute("resultMessage", result);
+
+        // Forward to a result page to display the outcome
+        request.getRequestDispatcher("/WEB-INF/Pages/CelebrationResult.jsp").forward(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

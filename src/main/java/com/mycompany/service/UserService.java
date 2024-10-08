@@ -28,6 +28,10 @@ public class UserService {
         return "User registered successfully.";
     }
 
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+    
     public String loginUser(String email, String password) {
         User user = userRepository.findByEmail(email);
 
