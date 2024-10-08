@@ -80,7 +80,7 @@ font-style: normal;
           <!-- Phone Number with Country Code Selector -->
           <div class="mt-4">
             <label class="block text-gray-700">Phone Number</label>
-            <input id="phone" type="tel" name="phone_number" placeholder="Enter Phone Number" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" required>
+            <input id="phone" type="tel" name="phonenumber" placeholder="Enter Phone Number" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" required>
           </div>
           <!-- Email -->
           <div class="mt-4">
@@ -261,6 +261,10 @@ font-style: normal;
 
       <p class="mt-4 text-center">Already have an account? <a href="<%= request.getContextPath() %>/Signin" class="text-blue-500 hover:text-blue-700 font-semibold">Log in</a></p>
     </div>
+
+    <c:if test="${not empty resultMessage}">
+    <div>${resultMessage}</div>
+</c:if>
   </div>
 
 </section>

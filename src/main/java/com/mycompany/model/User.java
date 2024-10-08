@@ -1,31 +1,39 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.model;
-
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users") // Name of the table in the database
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment ID
     private Long id;
 
     @Column(nullable = false) // Not null constraint
-    private String name;
+    private String firstName;
+
+    @Column(nullable = false) // Not null constraint
+    private String lastName;
+
+    @Column(nullable = false, unique = true) // Not null and unique constraint
+    private String email;
 
     @Column(nullable = false) // Not null constraint
     private String password;
 
+    @Column(nullable = false, unique = true) // Not null and unique constraint
+    private String cellphoneNumber;
+
     // Constructors
     public User() {}
 
-    public User(String name, String password) {
-        this.name = name;
+    public User(String firstName, String lastName, String email, String password, String cellphoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
         this.password = password;
+        this.cellphoneNumber = cellphoneNumber;
     }
 
     // Getters and Setters
@@ -37,12 +45,28 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -51,5 +75,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCellphoneNumber() {
+        return cellphoneNumber;
+    }
+
+    public void setCellphoneNumber(String cellphoneNumber) {
+        this.cellphoneNumber = cellphoneNumber;
     }
 }

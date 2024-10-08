@@ -11,11 +11,20 @@ public class UserService {
     @Inject
     private UserRepository userRepository;
 
-    public void registerUser(String username, String password) {
-        User user = new User();
-        user.setName(username);
-        user.setPassword(password);
+    public String registerUser(String firstName, String lastName, String email, String password, String cellphoneNumber) {
+        // Check if a user with the same email or cellphone number already exists
+        if (userRepository.findByEmail(email) != null) {
+            return "User with this email already exists.";
+        }
+
+        if (userRepository.findByCellphoneNumber(cellphoneNumber) != null) {
+            return "User with this cellphone number already exists.";
+        }
+
+        // Create and save the new user
+        User user = new User(firstName, lastName, email, password, cellphoneNumber);
+        userRepository.save(user);
         
-        userRepository.save(user);  // Save the user using the repository
+        return "User registered successfully.";
     }
 }
