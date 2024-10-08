@@ -7,14 +7,15 @@
     <persistence-unit name="CharityDonationUP" transaction-type="JTA">
  <jta-data-source>jdbc/postgres_live</jta-data-source>
         <!-- List of Entity Classes -->
-        <class>ump.charitydonations.model.User</class>
+        <class>com.mycompany.model.User</class>
 
         <!-- Optional elements (you can add other optional tags like exclude-unlisted-classes, validation-mode) -->
 
         <!-- JNDI Data Source - this should be placed after classes or other similar elements -->
         <properties>
             <property name="jakarta.persistence.jta-data-source" value="jdbc/postgres_live"/>
-             
+           <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
+           <property name="jakarta.persistence.schema-generation.database.action" value="update"/>
             <property name="eclipselink.logging.level" value="FINE"/> <!-- Adjust the logging level as needed -->
             <property name="eclipselink.logging.level.sql" value="FINE"/> <!-- For SQL logs -->
             <property name="eclipselink.logging.level.transaction" value="FINE"/> <!-- For transaction logs -->

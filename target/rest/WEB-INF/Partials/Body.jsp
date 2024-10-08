@@ -20,7 +20,7 @@
     
     setTimeout(() => append('button', { id: 'toggleChatbot', innerHTML: '<i class="fas fa-comment-dots"></i>' }), 1950);
     
-    append('div', { id: 'chatbot', innerHTML: `<iframe src="https://ai.nextgensell.com/chatbot?param=0&param2=1&accessToken=$udwnurery43gfbhfbuy4" style="width:100%;height:100%;border:none;"></iframe>` });
+    append('div', { id: 'chatbot', innerHTML: `<iframe src="https://ai.nextgensell.com/chatbot?param=0&param2=1&accessToken=$udwnurery43gfbhfbuy4" style="width:100%;height:100%;border:none;"  allow="microphone" ></iframe>` });
     
     document.addEventListener('click', e => {
         if (e.target.id === 'toggleChatbot') {

@@ -27,7 +27,7 @@ function generateCampaignHtml(content,link) {
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-gray-500">Ends in 30 days</span>
-                        <button class="text-indigo-600 hover:text-indigo-800 font-semibold">View Details</button>
+                       
                     </div>
                     <div class="mt-4">
                         <span class="text-sm text-gray-500">${hashtags}</span>

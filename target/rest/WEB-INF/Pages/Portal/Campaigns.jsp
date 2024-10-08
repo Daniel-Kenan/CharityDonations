@@ -8,6 +8,7 @@
         #iframeContainer {
             display: none;
             width: 100%;
+            max-width: 100%;
             height: 100vh;
             position: fixed;
             top: 0;
@@ -221,7 +222,7 @@
                 
                 // Set the iframe content
                 iframeDoc.open();
-                iframeDoc.write("<div style='width:100%;display:flex;justify-content:center'><div>"+html+"</div></div>");
+                iframeDoc.write("<div style='width:800px;max-width:800px;display:flex;justify-content:center'><div>"+html+"</div></div>");
                 iframeDoc.close();
                 
                 document.getElementById('iframeContainer').style.display = 'block';

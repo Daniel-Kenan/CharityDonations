@@ -1,84 +1,40 @@
 package com.ump.restapi;
 
-import com.mycompany.chariydonations.implementation.UserDaoImpl;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet; // Import the WebServlet annotation
+import jakarta.servlet.annotation.WebServlet; 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import ump.charitydonations.model.User;
+import jakarta.inject.Inject;
+import com.mycompany.service.UserService;
 
-/**
- *
- * @author sdani
- */
+import java.io.IOException;
 
-// Annotate the servlet with a URL pattern
-@WebServlet("/Signup") // Specify the URL pattern for this servlet
+@WebServlet("/Signup") 
 public class SignUpServlet extends HttpServlet {
- private EntityManagerFactory emf;
 
-    @Override
-    public void init() throws ServletException {
-        // Initialize the EntityManagerFactory when the servlet is created
-        emf = Persistence.createEntityManagerFactory("CharityDonationUP");
-    }
+    @Inject
+    private UserService userService;  // Inject UserService
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Set response content type
-       request.getRequestDispatcher("/WEB-INF/Auth/Signup.jsp").forward(request, response);
-        
+        // Forward to signup page
+        request.getRequestDispatcher("/WEB-INF/Auth/Signup.jsp").forward(request, response);
     }
-        
-    
-     @Override
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         // Get user input from the registration form
         String username = request.getParameter("firstname");
         String surname = request.getParameter("lastname");
         String password = request.getParameter("password");
-     
-        // Create a new User object
-        User newUser = new User();
-        newUser.setUsername(username);
-        newUser.setSurname(surname);
-        newUser.setPassword(password);
 
-        // Create EntityManager and UserDaoImpl to persist the user
-        EntityManager em = emf.createEntityManager();
-        UserDaoImpl userDao = new UserDaoImpl();
+        // Register the user
+        userService.registerUser(username, password);
 
-        boolean isRegistered = userDao.registerUser(newUser);
-
-        // Close the EntityManager
-        em.close();
-
-        // Provide feedback to the user (you can customize this response)
-        if (isRegistered) {
-            response.getWriter().write("User registered successfully!");
-        } else {
-            response.getWriter().write("User registration failed.");
-        }
-    }
-
-    @Override
-    public void destroy() {
-        // Close EntityManagerFactory when the servlet is destroyed
-        if (emf != null) {
-            emf.close();
-        }
-    }
-
-    @Override
-    public String getServletInfo() {    
-        return "LoginServelet that responds with a greeting.";
+        // Optionally redirect or forward to a success page
+        response.sendRedirect(request.getContextPath() + "/Onboarding");  // Example redirect
     }
 }
