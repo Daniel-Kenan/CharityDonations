@@ -43,7 +43,7 @@
         <!-- Email -->
         <div class="mb-4">
           <label class="block text-gray-700">Email Address</label>
-          <input type="email" name="username" placeholder="Enter Email Address" class="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-300 focus:border-blue-500 focus:bg-white focus:outline-none" required>
+          <input type="email" name="email" placeholder="Enter Email Address" class="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-300 focus:border-blue-500 focus:bg-white focus:outline-none" required>
         </div>
 
         <!-- Password -->
@@ -53,6 +53,14 @@
           <span id="togglePassword" class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer text-gray-500" style="margin-top:25px">
             😣
           </span>
+
+          <!-- Error Message Section -->
+<% if (request.getAttribute("errorMessage") != null) { %>
+  <div class="text-red-500 text-center mb-4">
+      <%= request.getAttribute("errorMessage") %>
+  </div>
+<% } %>
+
         </div>
 
         <script>

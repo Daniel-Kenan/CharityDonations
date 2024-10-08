@@ -37,7 +37,7 @@ public class SignUpServlet extends HttpServlet {
         // Check if registration was successful
         if (resultMessage.equals("User registered successfully.")) {
             // Redirect to the Onboarding page
-            response.sendRedirect(request.getContextPath() + "/Onboarding"); // Adjust the path to your onboarding page
+            response.sendRedirect(request.getContextPath() + "/Signin"); // Adjust the path to your onboarding page
         } else {
             // Set the message as a request attribute for displaying in the signup form
             request.setAttribute("resultMessage", resultMessage);
