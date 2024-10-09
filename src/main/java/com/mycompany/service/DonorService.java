@@ -1,8 +1,6 @@
 package com.mycompany.service;
 
-import com.mycompany.model.Charity;
 import com.mycompany.model.Donors;
-import com.mycompany.repository.CharityRepository;
 import com.mycompany.repository.DonorRepository;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
@@ -15,15 +13,12 @@ public class DonorService {
     @Inject
     private DonorRepository donorRepository;
 
-    @Inject
-    private CharityRepository charityRepository;
-
     public String registerDonor(String name, String surname, String email, BigDecimal amount, Long charityId) {
         // Check if the charity exists
-        Charity charity = charityRepository.findById(charityId);
-        if (charity == null) {
-            return "Charity not found.";
-        }
+        // Charity charity = charityRepository.findById(charityId); // Uncomment if Charity check is needed
+        // if (charity == null) {
+        //     return "Charity not found.";
+        // }
 
         // Validate donor input fields
         if (name == null || surname == null || email == null || amount == null || charityId == null) {
@@ -43,5 +38,10 @@ public class DonorService {
 
     public List<Donors> findByCharityId(Long charityId) {
         return donorRepository.findByCharityId(charityId);
+    }
+
+    // Add the findAll method here
+    public List<Donors> findAll() {
+        return donorRepository.findAll(); // Call the repository method to get all donors
     }
 }

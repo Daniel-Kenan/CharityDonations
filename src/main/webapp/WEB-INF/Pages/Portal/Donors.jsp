@@ -1,18 +1,16 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <jsp:include page="./Partials/Head.jsp" />
-    <!-- Include DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <!-- Include DataTables Buttons CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
 </head>
 <body class="bg-gray-120">
     <div class="flex h-screen">
-        <!-- Sidebar -->
         <jsp:include page="../../Components/Sidebar.jsp" />
 
-        <!-- Main Content -->
         <main class="flex-1 p-8 overflow-y-auto">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-3xl font-semibold">Donor Management</h2>
@@ -24,7 +22,6 @@
                 </div>
             </div>
 
-            <!-- Donor Table -->
             <div class="bg-white p-6 rounded-lg shadow-md mb-8">
                 <h3 class="text-xl font-semibold mb-4">Donor List</h3>
                 <div class="overflow-x-auto">
@@ -33,31 +30,21 @@
                             <tr class="bg-gray-100">
                                 <th class="text-left py-3 px-4 font-semibold text-sm">Donor Name</th>
                                 <th class="text-left py-3 px-4 font-semibold text-sm">Email</th>
-                                <th class="text-left py-3 px-4 font-semibold text-sm">Phone</th>
                                 <th class="text-left py-3 px-4 font-semibold text-sm">Total Donations</th>
                                 <th class="text-left py-3 px-4 font-semibold text-sm">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="border-b">
-                                <td class="py-3 px-4">John Doe</td>
-                                <td class="py-3 px-4">john.doe@example.com</td>
-                                <td class="py-3 px-4">123-456-7890</td>
-                                <td class="py-3 px-4">R5,000</td>
-                                <td class="py-3 px-4">
-                                    <button class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 focus:outline-none">View</button>
-                                </td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="py-3 px-4">Jane Smith</td>
-                                <td class="py-3 px-4">jane.smith@example.com</td>
-                                <td class="py-3 px-4">987-654-3210</td>
-                                <td class="py-3 px-4">R10,000</td>
-                                <td class="py-3 px-4">
-                                    <button class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 focus:outline-none">View</button>
-                                </td>
-                            </tr>
-                            <!-- More rows as needed -->
+                            <c:forEach var="donor" items="${donorList}">
+                                <tr class="border-b">
+                                    <td class="py-3 px-4">${donor.name} ${donor.surname}</td>
+                                    <td class="py-3 px-4">${donor.email}</td>
+                                    <td class="py-3 px-4">R${donor.amount}</td>
+                                    <td class="py-3 px-4">
+                                        <button class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 focus:outline-none">View</button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -67,11 +54,8 @@
         </main>
     </div>
 
-    <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Include DataTables JS -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <!-- Include DataTables Buttons JS -->
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
