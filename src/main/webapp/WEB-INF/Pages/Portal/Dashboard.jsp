@@ -40,8 +40,26 @@
                         </div>
                         <div>
                             <h3 class="text-lg font-semibold mb-1">Active Campaigns</h3>
-                            <p class="text-3xl font-bold text-gray-600">5</p>
+                            <p class="text-3xl font-bold text-gray-600" id="num_of_campaigns">--</p>
                         </div>
+                        <script>
+                                  
+                fetch('https://media.nextgensell.com/files?folder=blog')
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+})
+.then(data => {
+    // Filter the array to get files with names ending in '.md'
+    let mdFiles = data.filter(item => item.type === "file" && item.name.endsWith('.md'));
+    // Update the number of campaigns
+    document.getElementById('num_of_campaigns').textContent = mdFiles.length; // Set the correct element
+})
+.catch(error => console.error('There was a problem with the fetch operation:', error));
+
+                        </script>
                     </div>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
@@ -73,7 +91,7 @@
                         </div>
                         <div>
                             <h3 class="text-lg font-semibold mb-1">Beneficiaries Estimated</h3>
-                            <p class="text-3xl font-bold text-gray-600"><%= beneficiariesReached %></p>
+                            <p class="text-3xl font-bold text-gray-600">----</p>
                         </div>
                     </div>
                 </div>
@@ -87,7 +105,7 @@
                 </div>
             </div>
 
-            <script>
+            <!-- <script>
                 // Donation Distribution Chart (Pie Chart)
                 const ctx = document.getElementById('donationDistribution').getContext('2d');
                 const donationDistributionChart = new Chart(ctx, {
@@ -121,7 +139,7 @@
                         }
                     }
                 });
-            </script>
+            </script> -->
 
             <script>
                 // AI Assistant Mock
