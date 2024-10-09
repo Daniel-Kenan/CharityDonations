@@ -35,7 +35,7 @@
               </p>
             </div>
             <div class="col-lg-5" data-aos="fade-up" data-aos-delay="300">
-              <form action="forms/newsletter.php" method="post" class="php-email-form">
+              <form action="<%= request.getContextPath() %>/Signin" method="GET" class="php-email-form">
                 <div class="sign-up-form"><input type="email" name="email"  placeholder="ex #FeesMustFall" ><input placeholder="Create a campaign..." type="submit" value="+ Create"></div>
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>

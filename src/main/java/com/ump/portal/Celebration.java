@@ -8,6 +8,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import com.mycompany.service.DonorService;
+import com.mycompany.model.Donors;
+import jakarta.inject.Inject;
+
 
 @WebServlet(name = "Celebration", urlPatterns = {"/Celebration"})
 public class Celebration extends HttpServlet {

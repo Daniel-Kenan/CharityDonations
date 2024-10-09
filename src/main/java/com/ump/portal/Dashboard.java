@@ -4,6 +4,9 @@
  */
 package com.ump.portal;
 
+import com.mycompany.model.Donors;
+import com.mycompany.service.DonorService;
+import jakarta.inject.Inject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +14,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
  *
@@ -18,10 +23,26 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Dashboard", urlPatterns = {"/Dashboard"})
 public class Dashboard extends HttpServlet {
-
+   @Inject
+    private DonorService donorService;
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   
+     List<Donors> donorList = donorService.findAll();
+      BigDecimal totalAmount = BigDecimal.ZERO;
+
+        // Loop through each donor and sum the donation amounts
+        for (Donors donor : donorList) {
+            totalAmount = totalAmount.add(donor.getAmount()); // Assuming getAmount() returns BigDecimal
+        }
+        
+        int totalAmountAsInt = totalAmount.intValue();
+
+// Pass the integer totalAmount to the request
+request.setAttribute("totalAmount", totalAmountAsInt);
+
+     request.setAttribute("donorsLength",donorList.size()) ; 
+
         request.getRequestDispatcher("/WEB-INF/Pages/Portal/Dashboard.jsp").forward(request, response);
     }
 
