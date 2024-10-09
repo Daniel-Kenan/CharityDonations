@@ -21,11 +21,11 @@ public class DonorRepository {
     }
 
     public List<Donors> findAll() {
-        return em.createQuery("SELECT d FROM Donor d", Donors.class).getResultList();
+        return em.createQuery("SELECT d FROM Donors d", Donors.class).getResultList();
     }
 
     public List<Donors> findByCharityId(Long charityId) {
-        return em.createQuery("SELECT d FROM Donor d WHERE d.charity.id = :charityId", Donors.class)
+        return em.createQuery("SELECT d FROM Donors d WHERE d.charityId = :charityId", Donors.class)
                 .setParameter("charityId", charityId)
                 .getResultList();
     }

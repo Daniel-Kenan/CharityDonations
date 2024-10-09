@@ -9,7 +9,7 @@
         <!-- List of Entity Classes -->
         <class>com.mycompany.model.User</class>
         <class>com.mycompany.model.Charity</class>
-
+        <class>com.mycompany.model.Donors</class>
         <!-- Optional elements (you can add other optional tags like exclude-unlisted-classes, validation-mode) -->
 
         <!-- JNDI Data Source - this should be placed after classes or other similar elements -->

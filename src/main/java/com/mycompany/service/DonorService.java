@@ -19,13 +19,18 @@ public class DonorService {
     private CharityRepository charityRepository;
 
     public String registerDonor(String name, String surname, String email, BigDecimal amount, Long charityId) {
+        // Check if the charity exists
         Charity charity = charityRepository.findById(charityId);
-
         if (charity == null) {
             return "Charity not found.";
         }
 
-        // Create Donors instance with charityId instead of the Charity object
+        // Validate donor input fields
+        if (name == null || surname == null || email == null || amount == null || charityId == null) {
+            return "Invalid input: All fields are required.";
+        }
+
+        // Create a Donors instance with charityId (no relationships)
         Donors donor = new Donors(name, surname, email, amount, charityId);
         donorRepository.save(donor);
 

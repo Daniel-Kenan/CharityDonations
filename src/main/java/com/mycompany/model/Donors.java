@@ -25,13 +25,17 @@ public class Donors {
     @Column(name = "charity_id", nullable = false)
     private Long charityId; // The ID of the charity to which the donor donated
 
+    // Default constructor (required by JPA)
+    public Donors() {
+    }
+
     // Parameterized constructor
     public Donors(String name, String surname, String email, BigDecimal amount, Long charityId) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.amount = amount;
-        this.charityId = charityId; // Store the charity ID
+        this.charityId = charityId;
     }
 
     // Getters and Setters
@@ -77,11 +81,11 @@ public class Donors {
     }
 
     public Long getCharityId() {
-        return charityId; // Getter for charityId
+        return charityId;
     }
 
     public void setCharityId(Long charityId) {
-        this.charityId = charityId; // Setter for charityId
+        this.charityId = charityId;
     }
 
     // Optional toString() method for easy debugging
@@ -93,7 +97,7 @@ public class Donors {
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", amount=" + amount +
-                ", charityId=" + charityId + // Output the charity ID
+                ", charityId=" + charityId +
                 '}';
     }
 }
