@@ -47,7 +47,7 @@
         <h1>Your page is published!</h1>
         <p>Congratulations! 🎉</p>
         <p>
-            <a id="publishedLink" href="#" target="_blank">Check your published page</a>
+            <a id="publishedLink" href="#" target="_blank"></a>
         </p>
     </div>
 
@@ -60,6 +60,7 @@
         // Set the dynamic link
         if (pageLink) {
             publishedLink.href = pageLink;
+            publishedLink.innerText = pageLink;
         } else {
             publishedLink.textContent = "No link provided!";
             publishedLink.href = "#"; // Disable link

@@ -3,6 +3,12 @@
 <head>
     <meta charset="utf-8">
     <title>Charity Campaign Creation</title>
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intro.js/minified/introjs.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/intro.js/minified/intro.min.js"></script>
+        
+  
+    
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
@@ -14,45 +20,44 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: space-between;
+            background-color: #f0f2f5;
             margin: 0;
             padding: 0;
-            background-color: #f0f2f5;
+            display: flex;
+            justify-content: space-between;
             height: 100vh;
         }
         #editor {
-            width: 65%;
+            width: 60%;
             margin-left: 20px;
             padding: 20px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            min-height: calc(100vh - 40px);
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
         }
         .sidebar {
-            width: 30%;
+            width: 35%;
             padding: 20px;
             background-color: #ffffff;
             border-left: 1px solid #ccc;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             margin-right: 20px;
-            min-height: calc(100vh - 40px);
             overflow-y: auto;
         }
-        .sidebar input[type="text"], .sidebar input[type="checkbox"] {
+        .sidebar input, .sidebar textarea {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
+            padding: 12px;
+            margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 8px;
+            box-sizing: border-box;
         }
         .buttons {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+            margin-top: 15px;
         }
         .buttons button {
             padding: 10px 20px;
@@ -61,7 +66,7 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s ease;
         }
         .buttons button:hover {
             background-color: #45a049;
@@ -76,26 +81,36 @@
         h3 {
             color: #333;
         }
-        
+        .char-limit {
+            font-size: 0.85em;
+            color: #888;
+            text-align: right;
+        }
     </style>
 </head>
 <body>
-    <div id="editor"></div>
-    
+    <div id="editor" ></div>
+
     <div class="sidebar">
-        <h3>Campaign Settings</h3>
+        <h3>Create Your Campaign</h3>
+        <label for="campaignTarget">Campaign Target:</label>
+<input type="number" id="campaignTarget" placeholder="Enter target amount...">
+        <label for="campaignDescription">Campaign Description:</label>
+        <textarea id="campaignDescription" maxlength="100" placeholder="Describe your campaign goal here..."></textarea>
+        <div class="char-limit">Character limit: <span id="charCount">0</span>/100</div>
+
+        <label for="aiInput">Ask AI for Suggestions:</label>
+        <textarea id="aiInput" placeholder="Enter a question to help create content..."></textarea>
+        <button onclick="generateAiContent()">Generate with AI</button>
         
-        <label>
-            Campaign Target: 
-            <input type="text" id="campaignTarget" placeholder="Enter target amount">
-        </label>
+        <div id="aiResponse" class="preview"></div>
 
         <div class="buttons">
             <button onclick="previewCampaign()">Preview</button>
             <button onclick="publishCampaign()">Publish</button>
         </div>
 
-        <div id="previewArea" class="preview"></div>
+        <div id="previewArea"  class="preview"></div>
     </div>
 
     <script>
@@ -159,42 +174,9 @@
                             text: "Your efforts can change the world 🌍. Set a goal, share your story, and inspire others to contribute to a cause you believe in! 💡✨"
                         }
                     },
-                    {
-                        type: "image",
-                        data: {
-                            file: {
-                                url: "https://media.nextgensell.com/files/blog/photo-1504159506876-f8338247a14a.avif"
-                            },
-                            caption: "A visual representation of our cause",
-                            withBorder: true,
-                            withBackground: false,
-                            stretched: false
-                        }
-                    },
-                    {
-                        type: "header",
-                        data: {
-                            text: "How to Begin 🎯",
-                            level: 3
-                        }
-                    },
-                    {
-                        type: "list",
-                        data: {
-                            items: [
-                                "💬 Tell your story: Share why this cause is important to you.",
-                                "🎯 Set your target: How much do you aim to raise?",
-                                "📢 Spread the word: Encourage others to donate and get involved!"
-                            ],  
-                            style: 'unordered'
-                        }
-                    },
-                    {
-                        type: "paragraph",
-                        data: {
-                            text: "Together, we can make a difference! 💪"
-                        }
-                    }
+                
+                   
+
                    
                     
                 ]
@@ -250,6 +232,17 @@
             });
             return markdown;
         }
+        function getLastSegmentWithoutMD(path) {
+    // Split the path by '/' to get all parts
+    const segments = path.split('/');
+    // Get the last segment
+    let lastSegment = segments[segments.length - 1];
+    // Remove the '.md' extension if it exists
+    if (lastSegment.endsWith('.md')) {
+        lastSegment = lastSegment.slice(0, -3); // Remove the last three characters
+    }
+    return lastSegment;
+}
 
         // Function to publish campaign and upload markdown file
         function publishCampaign() {
@@ -278,7 +271,8 @@
                 })
                 .then(data => {
                     console.log('Markdown file uploaded successfully:', data);
-                    location.href ="http://localhost:8080/CharityDonations/Celebration?link=http://localhost:8080/CharityDonations/Campaigns" 
+                         
+                    location.href =`${location.origin}/CharityDonations/Celebration?link=${location.origin}/CharityDonations/PreviewServlet?file=${getLastSegmentWithoutMD(data.file_path)}`
                 })
                 .catch((error) => {
                     console.error('Error uploading markdown file:', error);
@@ -294,5 +288,46 @@
             });
         }
     </script>
+    <script>
+        // Start the Intro.js tour
+        function startTour() {
+            introJs().setOptions({
+                steps: [
+                    
+                    {
+                        intro: 'Welcome to the Campaign Creator! This is where you can create and manage your charity campaigns.',
+                        position: 'right'
+                    },
+                    {
+                        element: '#campaignTarget',
+                        intro: 'Set your target amount here',
+                        position: 'bottom'
+                    },
+                    {
+                        element: '#campaignDescription',
+                        intro: 'Describe your campaign here. Let others know about your goals!',
+                        position: 'bottom'
+                    },
+                    {
+                        element: '#aiInput',
+                        intro: 'You can ask the AI for suggestions to help create your content.',
+                        position: 'bottom'
+                    },
+                    {
+                        element: '#previewArea',
+                        intro: 'See how your campaign will look before publishing it.',
+                        position: 'bottom'
+                    }
+                ],
+                showBullets: false,
+                exitOnOverlayClick: false,
+                hideNext: true
+            }).start();
+        }
+    
+        // Start the tour on page load
+        window.onload = startTour;
+    </script>
+    
 </body>
 </html>

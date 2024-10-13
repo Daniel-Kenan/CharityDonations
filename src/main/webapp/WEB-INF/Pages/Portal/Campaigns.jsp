@@ -213,23 +213,28 @@
 
 <script>
     function openPage(link) {
-        fetch(link)
-            .then(response => response.text())  // Fetch the markdown content
-            .then(markdown => {
-                const converter = new showdown.Converter();  // Initialize Showdown
-                const html = converter.makeHtml(markdown);  // Convert markdown to HTML
-                const iframeDoc = document.getElementById('iframe').contentDocument || document.getElementById('iframe').contentWindow.document;
+       let mdUrl = link
+        mdUrl = mdUrl.split('/').pop(); // Get the file name from the full URL path if there's any prepended part
+            // Remove the .md suffix if it's present
+            mdUrl = mdUrl.replace(/\.md$/, ''); 
+        location.href = "/CharityDonations/PreviewServlet?file=" + mdUrl
+        // fetch(link)
+        //     .then(response => response.text())  // Fetch the markdown content
+        //     .then(markdown => {
+        //         const converter = new showdown.Converter();  // Initialize Showdown
+        //         const html = converter.makeHtml(markdown);  // Convert markdown to HTML
+        //         const iframeDoc = document.getElementById('iframe').contentDocument || document.getElementById('iframe').contentWindow.document;
                 
-                // Set the iframe content
-                iframeDoc.open();
-                iframeDoc.write("<div style='width:800px;max-width:800px;display:flex;justify-content:center'><div>"+html+"</div></div>");
-                iframeDoc.close();
+        //         // Set the iframe content
+        //         iframeDoc.open();
+        //         iframeDoc.write("<div style='width:800px;max-width:800px;display:flex;justify-content:center'><div>"+html+"</div></div>");
+        //         iframeDoc.close();
                 
-                document.getElementById('iframeContainer').style.display = 'block';
-            })
-            .catch(error => {
-                console.error('Error loading markdown:', error);
-            });
+        //         document.getElementById('iframeContainer').style.display = 'block';
+        //     })
+        //     .catch(error => {
+        //         console.error('Error loading markdown:', error);
+        //     });
     }
 
     document.getElementById('closeButton').addEventListener('click', function() {
