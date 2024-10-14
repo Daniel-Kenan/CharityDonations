@@ -14,6 +14,35 @@
     </div>
 
     <script>
+
+function sendEmail() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const emailData = {
+        email: urlParams.get("email"),  // Replace with the recipient's email
+        message: "Thank you for donating"  // Replace with your custom message
+    };
+
+    fetch('https://ai.nextgensell.com/send-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailData),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();  
+    })
+    .then(data => {
+        console.log('Success:', data);  
+    })
+    .catch((error) => {
+        console.error('Error:', error); 
+    });
+}
+
         // Get URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const status = urlParams.get('status'); // Use 'status' as the parameter name
@@ -26,6 +55,7 @@
             messageDiv.innerHTML = "Thank you for your donation! Your support means a lot to us.";
             messageDiv.classList.add('text-green-500');
             emojiDiv.innerHTML = "😊";
+            sendEmail();
         } else if (status === 'failed') {
             messageDiv.innerHTML = "Unfortunately, your donation could not be processed.";
             messageDiv.classList.add('text-red-500');
@@ -34,6 +64,11 @@
             messageDiv.innerHTML = "Invalid status.";
             messageDiv.classList.add('text-gray-500');
         }
+
+       
+
+
+
     </script>
 </body>
 </html>

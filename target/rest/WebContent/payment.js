@@ -98,7 +98,6 @@
             const amount = donationAmountInput.value || customAmountInput.value;
             const returnUrl = `${window.location.origin}/CharityDonations/DonateProcessServlet?name=${encodeURIComponent(donorName)}&email=${encodeURIComponent(donorEmail)}&amount=${encodeURIComponent(amount)}&phone=${encodeURIComponent(donorPhone)}&status=success`;
             const cancelUrl = `${window.location.origin}/CharityDonations/DonateProcessServlet?status=failed`;
-
             document.querySelector('input[name="return_url"]').value = returnUrl;
             console.log(document.querySelector("form"))
             document.querySelector('input[name="cancel_url"]').value = cancelUrl;
