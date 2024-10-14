@@ -17,6 +17,7 @@
             color: white;
         }
     </style>
+    
 </head>
 <body class="flex items-center justify-center min-h-screen">
     <div class="bg-white p-10 rounded-lg shadow-lg w-full max-w-lg">
@@ -24,7 +25,7 @@
         <p class="text-center mb-6 text-gray-600 text-lg">Your generous donation helps us make a difference!</p>
         
         <!-- Donor Information Form -->
-        <form id="donationForm" action="https://www.payfast.co.za/eng/process" method="POST">
+        <form id="donationForm" action="https://sandbox.payfast.co.za/eng/process" method="POST" onsubmit="setUrls()">
             <!-- Donor Information Fields -->
             <div class="mb-4">
                 <label for="donorName" class="block text-gray-700 font-semibold mb-1">Your Name</label>
@@ -59,12 +60,13 @@
             </div>
             
             <!-- Hidden PayFast Inputs -->
-            <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
-            <input type="hidden" name="return_url" value="YOUR_RETURN_URL">
-            <input type="hidden" name="cancel_url" value="YOUR_CANCEL_URL">
-            <input type="hidden" name="notify_url" value="YOUR_NOTIFY_URL">
+            <input type="hidden" name="merchant_id" value="10000100">
+            <input type="hidden" name="merchant_key" value="46f0cd694581a">
+            <input type="hidden" name="item_name" value="Charity Donation">
             <input type="hidden" name="amount" id="donationAmount">
             <input type="hidden" name="organization" id="organizationInput" value="">
+            <input type="hidden" name="return_url" id="returnUrl" value="">
+            <input type="hidden" name="cancel_url" id="cancelUrl" value="">
 
             <!-- Submit Button -->
             <button type="submit" class="w-full bg-red-600 text-white font-semibold p-3 rounded-lg hover:bg-red-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-red-500">Donate Now</button>
@@ -72,51 +74,8 @@
 
         <p class="text-center mt-6 text-gray-500 text-sm">Thank you for your support!</p>
     </div>
-
-    <script>
-        // Get the organization name from URL parameters
-        const params = new URLSearchParams(window.location.search);
-        const orgName = params.get('organization');
-
-        // Set the organization name in the header and hidden input
-        const organizationNameElement = document.getElementById('organizationName');
-        const organizationInput = document.getElementById('organizationInput');
-        if (orgName) {
-            const decodedOrgName = decodeURIComponent(orgName);
-            organizationNameElement.textContent = `Support ${decodedOrgName}`;
-            organizationInput.value = decodedOrgName;  // Set the value for PayFast
-        }
-
-        // Donation amount selection
-        const buttons = document.querySelectorAll('.donation-button');
-        const customAmountContainer = document.getElementById('customAmountContainer');
-        const donationAmountInput = document.getElementById('donationAmount');
-        const customAmountInput = document.getElementById('customAmount');
-
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove 'selected' class from all buttons
-                buttons.forEach(btn => btn.classList.remove('selected'));
-                // Add 'selected' class to the clicked button
-                button.classList.add('selected');
-                
-                // Handle 'Other Amount' selection
-                if (button.getAttribute('data-amount') === 'other') {
-                    customAmountContainer.classList.remove('hidden');
-                    donationAmountInput.value = '';
-                    customAmountInput.required = true;
-                } else {
-                    customAmountContainer.classList.add('hidden');
-                    customAmountInput.required = false;
-                    donationAmountInput.value = button.getAttribute('data-amount');
-                }
-            });
-        });
-
-        // Update donation amount when custom value is entered
-        customAmountInput.addEventListener('input', () => {
-            donationAmountInput.value = customAmountInput.value;
-        });
+    <script src="<%= request.getContextPath() %>/WebContent/payment.js">
     </script>
+    
 </body>
 </html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Status</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white shadow-md rounded-lg p-8 max-w-md text-center">
+        <div class="text-2xl font-bold mb-4" id="message"></div>
+        <div class="text-lg" id="emoji"></div>
+        <a href="/" class="mt-6 inline-block px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">Go Back</a>
+    </div>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('status'); // Use 'status' as the parameter name
+
+        const messageDiv = document.getElementById('message');
+        const emojiDiv = document.getElementById('emoji');
+
+        // Check the status and display the appropriate message
+        if (status === 'success') {
+            messageDiv.innerHTML = "Thank you for your donation! Your support means a lot to us.";
+            messageDiv.classList.add('text-green-500');
+            emojiDiv.innerHTML = "😊";
+        } else if (status === 'failed') {
+            messageDiv.innerHTML = "Unfortunately, your donation could not be processed.";
+            messageDiv.classList.add('text-red-500');
+            emojiDiv.innerHTML = "😢";
+        } else {
+            messageDiv.innerHTML = "Invalid status.";
+            messageDiv.classList.add('text-gray-500');
+        }
+    </script>
+</body>
+</html>

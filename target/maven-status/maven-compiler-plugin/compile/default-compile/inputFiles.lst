@@ -12,6 +12,7 @@
 /home/daniel-kenan-slinda/NetBeansProjects/CharityDonations/src/main/java/com/mycompany/model/Charity.java
 /home/daniel-kenan-slinda/NetBeansProjects/CharityDonations/src/main/java/com/ump/portal/Campaign.java
 /home/daniel-kenan-slinda/NetBeansProjects/CharityDonations/src/main/java/com/ump/restapi/HomeServelet.java
+/home/daniel-kenan-slinda/NetBeansProjects/CharityDonations/src/main/java/com/ump/restapi/DonateProcessServlet.java
 /home/daniel-kenan-slinda/NetBeansProjects/CharityDonations/src/main/java/com/mycompany/model/User.java
 /home/daniel-kenan-slinda/NetBeansProjects/CharityDonations/src/main/java/com/mycompany/service/DonorService.java
 /home/daniel-kenan-slinda/NetBeansProjects/CharityDonations/src/main/java/com/ump/restapi/LoginServlet.java
