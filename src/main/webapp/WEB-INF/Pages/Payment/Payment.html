@@ -17,9 +17,16 @@
 
 function sendEmail() {
     const urlParams = new URLSearchParams(window.location.search);
+    const now = new Date();
+    // Get current date
+    const date = now.toLocaleDateString(); // Format: MM/DD/YYYY
+
+    // Get current time
+    const time = now.toLocaleTimeString(); // Format: HH:MM:SS AM/PM
+    let tmp  = `Date: ${date} <br> Time: ${time}`
     const emailData = {
         email: urlParams.get("email"),  // Replace with the recipient's email
-        message: "Thank you for donating"  // Replace with your custom message
+        message: `Thank you for donating R${amount} to our Campaign at  ${tmp} This is much appreciated`  // Replace with your custom message
     };
 
     fetch('https://ai.nextgensell.com/send-email', {
