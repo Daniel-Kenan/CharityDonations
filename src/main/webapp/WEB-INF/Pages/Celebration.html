@@ -17,11 +17,14 @@
             overflow: hidden; /* Prevent scrolling during confetti */
         }
         .container {
+            position: relative;
             text-align: center;
             padding: 20px;
             background: white;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
+            max-width: 600px;
+            width: 100%;
         }
         h1 {
             font-size: 2.5em;
@@ -40,15 +43,68 @@
             opacity: 0.8;
             z-index: 1000;
         }
+        .floating-share-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+          
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+        }
+        .share-options {
+            display: none;
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+        }
+        .share-options a {
+            display: block;
+            padding: 10px 20px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #ddd;
+        }
+        .share-options a:last-child {
+            border-bottom: none;
+        }
+        .share-options a:hover {
+            background-color: #f1f1f1;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Your page is published!</h1>
-        <p>Congratulations! 🎉</p>
+        <p>Congratulations! </p>
         <p>
             <a id="publishedLink" href="#" target="_blank"></a>
         </p>
+
+        <!-- Floating Share Icon inside the container -->
+        <button class="floating-share-btn" id="shareIcon">📢</button>
+
+        <!-- Share Options Dropdown inside the container -->
+        <div class="share-options" id="shareOptions">
+            <a id="share-facebook" href="#" target="_blank">Share via Facebook</a>
+            <a id="share-twitter" href="#" target="_blank">Share via Twitter</a>
+            <a id="share-whatsapp" href="#" target="_blank">Share via WhatsApp</a>
+            <a id="share-linkedin" href="#" target="_blank">Share via LinkedIn</a>
+            <a id="share-email" href="#">Share via Email</a>
+        </div>
     </div>
 
     <script>
@@ -61,10 +117,25 @@
         if (pageLink) {
             publishedLink.href = pageLink;
             publishedLink.innerText = pageLink;
+
+            // Set share links dynamically
+            document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageLink)}`;
+            document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageLink)}&text=Check%20out%20this%20page!`;
+            document.getElementById('share-whatsapp').href = `https://api.whatsapp.com/send?text=Check%20out%20this%20page:%20${encodeURIComponent(pageLink)}`;
+            document.getElementById('share-linkedin').href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageLink)}`;
+            document.getElementById('share-email').href = `mailto:?subject=Check%20out%20this%20page&body=Here%20is%20the%20link%3A%20${encodeURIComponent(pageLink)}`;
         } else {
             publishedLink.textContent = "No link provided!";
             publishedLink.href = "#"; // Disable link
         }
+
+        // Floating share button toggle
+        const shareIcon = document.getElementById('shareIcon');
+        const shareOptions = document.getElementById('shareOptions');
+
+        shareIcon.addEventListener('click', () => {
+            shareOptions.style.display = shareOptions.style.display === 'block' ? 'none' : 'block';
+        });
 
         // Confetti animation
         let confettiInterval;
@@ -112,9 +183,9 @@
         }
 
         function startConfetti() {
-            // Generate more confetti in the beginning
+            
             let initialCount = 0;
-            const maxInitialCount = 100; // Number of confetti pieces to create initially
+            const maxInitialCount = 100; 
             const initialInterval = setInterval(() => {
                 if (initialCount < maxInitialCount) {
                     createConfetti();
@@ -122,23 +193,22 @@
                 } else {
                     clearInterval(initialInterval);
                 }
-            }, 50); // Create new confetti every 50ms for the initial burst
+            }, 50); 
 
-            // After initial burst, continue creating confetti at a slower pace
-            confettiInterval = setInterval(createConfetti, 100); // Continue at 100ms intervals
+       
+            confettiInterval = setInterval(createConfetti, 100); 
         }
 
         function stopConfetti() {
             clearInterval(confettiInterval);
         }
 
-        // Start confetti
+  
         startConfetti();
 
-        // Stop confetti after 5 seconds
+     
         setTimeout(stopConfetti, 5000);
 
-        // Confetti falling animation
         const style = document.createElement('style');
         style.innerHTML = `
             @keyframes fall {
