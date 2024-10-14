@@ -7,7 +7,7 @@ function generateCampaignHtml(content,link) {
     // Extract the first heading, paragraph, image, and hashtags
     const heading = doc.querySelector('h1') ? doc.querySelector('h1').innerText : 'Default Heading';
     const paragraph = doc.querySelector('p') ? doc.querySelector('p').innerText : 'Default Paragraph';
-    const image = doc.querySelector('img') ? doc.querySelector('img').src : '/api/placeholder/400/200';
+    const image = doc.querySelector('img') ? doc.querySelector('img').src : 'https://placehold.co/600x400?text=Campaign';
     const hashtags = Array.from(doc.querySelectorAll('span')).map(span => span.innerText).join(' ');
     console.log(typeof image)
     // Generate the campaign HTML

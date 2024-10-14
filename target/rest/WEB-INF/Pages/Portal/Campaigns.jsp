@@ -50,13 +50,13 @@
         <main class="flex-1 p-8 overflow-y-auto">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-3xl font-semibold">Campaigns</h2>
-                <button onclick="openNewCampaignModal()" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <button onclick="openNewCampaignModal()" class="bg-red-600  text-white px-4 py-2 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:bg-red-500 ">
                     <i class="fas fa-plus mr-2"></i>New Campaign
                 </button>
             </div>
 
             <!-- Campaign Filters -->
-            <div class="bg-white p-4 rounded-lg shadow-md mb-6">
+            <!-- <div class="bg-white p-4 rounded-lg shadow-md mb-6">
                 <div class="flex flex-wrap gap-4">
                     <div class="flex-grow">
                         <input type="text" placeholder="Search campaigns..." class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
@@ -79,7 +79,7 @@
                         </select>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Campaigns Grid -->
             <div id="Campaigns" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

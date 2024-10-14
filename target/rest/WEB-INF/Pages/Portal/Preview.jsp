@@ -36,11 +36,32 @@
         <article id="content" class="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto prose prose-lg">
             <header class="mb-6">
                 <h1 id="post-title" class="font-semibold text-gray-900"></h1>
-                <p id="post-meta" class="text-gray-500 text-sm mt-2"></p>
+                <p id="post-meta" class="text-gray-500 text-sm mt-2">#CharityCampaign</p>
             </header>
             <div id="markdown-content" class="text-gray-700"></div>
+    
+            <!-- Donate Button Anchor -->
+            <div class="mt-8 text-center">
+                <a href="/CharityDonations/Donate" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200 ease-in-out shadow-md hover:shadow-lg">
+                    Donate Now
+                </a>
+            </div>
+    
+            <!-- Share Button Section -->
+            <div class="mt-8 text-center">
+                <p class="text-gray-600 mb-2">Share this campaign:</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="text-blue-600 hover:underline">Facebook</a>
+                    <a href="#" class="text-blue-400 hover:underline">Twitter</a>
+                    <a href="#" class="text-pink-600 hover:underline">Instagram</a>
+                    <!-- Add more share buttons as needed -->
+                </div>
+            </div>
         </article>
     </main>
+    
+    
+    
 
     <script>
         // Function to get URL parameters

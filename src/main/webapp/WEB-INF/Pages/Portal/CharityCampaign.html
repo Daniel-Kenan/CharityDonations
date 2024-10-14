@@ -101,13 +101,16 @@
 
         <label for="aiInput">Ask AI for Suggestions:</label>
         <textarea id="aiInput" placeholder="Enter a question to help create content..."></textarea>
-        <button onclick="generateAiContent()">Generate with AI</button>
+    <div class="buttons">
+        <button class="bg-red-600  text-white px-4 py-2 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:bg-red-500" onclick="generateAiContent()">Generate with AI 🌟</button>
+
+    </div>
         
         <div id="aiResponse" class="preview"></div>
 
         <div class="buttons">
-            <button onclick="previewCampaign()">Preview</button>
-            <button onclick="publishCampaign()">Publish</button>
+            <button onclick="previewCampaign()" class="bg-red-600  text-white px-4 py-2 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:bg-red-500 ">Preview</button>
+            <button onclick="publishCampaign()"  class="bg-red-600  text-white px-4 py-2 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:bg-red-500 ">Publish</button>
         </div>
 
         <div id="previewArea"  class="preview"></div>
@@ -165,7 +168,7 @@
                         type: "header",
                         data: {
                             text: "🚀 Start Your Charity Campaign Today!",
-                            level: 2
+                            level: 1
                         }
                     },
                     {
